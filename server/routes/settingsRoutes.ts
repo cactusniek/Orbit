@@ -43,3 +43,22 @@ settingsRoutes.post('/saveConnection', async (req: Request, res: Response) => {
         res.status(500).json('Something went wrong, please try again')
     }
 })
+
+settingsRoutes.post('/remoteStructure', async (req: Request, res: Response) => {
+    let result = null
+
+    try {
+        result = await settingsServices.remoteStructure(req.body.id)
+
+        if (!result.success) {
+            loggerService.Logger('INFO', req.body.email, req.ip, req.route.path, GlobalServices.filePath(__dirname, __filename), result.function, result.logMessage)
+            res.status(400).json({ result: result.success, message: result.message })
+        } else {
+            loggerService.Logger('INFO', req.body.email, req.ip, req.route.path, GlobalServices.filePath(__dirname, __filename), result.function, result.logMessage)
+            res.status(200).json({ result: result.success, data: result.data })
+        }
+    } catch (err) {
+        loggerService.Logger('WARNING', req.body.email, req.ip, req.route.path, GlobalServices.filePath(__dirname, __filename), settingsServices.saveConnection.name, err.message)
+        res.status(500).json('Something went wrong, please try again')
+    }
+})

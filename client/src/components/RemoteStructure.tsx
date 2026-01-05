@@ -20,7 +20,7 @@ export default function RemoteStructure() {
 
         const remoteStructureObject = await settingsFunctions.remoteStructure()
 
-        setRemoteStructure(remoteStructureObject.data)
+        setRemoteStructure(remoteStructureObject.data) // might need to be parsed
         setRemoteStructureResult(remoteStructureObject.result)
         setRemoteStructureMessage(remoteStructureObject.message)
     }

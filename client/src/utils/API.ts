@@ -131,7 +131,7 @@ export class settingsAPI {
 
     public static async remoteStructure(): Promise<RemoteStructureResponse> {
         try {
-            let response = await APIBase.fetchData('/edit/remoteStructure', 'POST')
+            let response = await APIBase.fetchData('/settings/remoteStructure', 'POST')
 
             response = parse(response)
 

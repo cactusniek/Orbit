@@ -34,9 +34,12 @@ export class settingsFunctions {
         const store = getDefaultStore()
 
         try {
-            // return the message here
+            const remoteStructureObject: RemoteStructureResponse = await settingsAPI.remoteStructure()
+
+            return remoteStructureObject
         } catch (err) {
-            // set remoteStructure message here
+            store.set(remoteStructureResultAtom, Boolean(false))
+            store.set(remoteStructureMessageAtom, String(err))
         }
     }
 }

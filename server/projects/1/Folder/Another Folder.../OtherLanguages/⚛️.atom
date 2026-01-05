@@ -6,8 +6,8 @@
 '.source.python':
   'Random List Print':
     'prefix': 'randlist'
-    'body': '''
-numbers = [1, 2, 3, 4, 5]
+    'body': '''zxZXzX
+numbers = [1, 2, 3, 4, 5]hopoihpoosjadodsajd
 for n in numbers:
     print(n)
 '''

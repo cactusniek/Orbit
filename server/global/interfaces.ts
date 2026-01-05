@@ -54,15 +54,7 @@ export interface UploadResults {
             | string
 }
 
-// ftpServices: 
-export interface ftpConfig {
-    host: string,
-    port: number
-    user: string,
-    password: string,
-    secure: boolean
-}
-
+// ftpServices:
 export interface ftpDirectories {
     paths: string []
 }

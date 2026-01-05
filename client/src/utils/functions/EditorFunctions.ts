@@ -6,6 +6,8 @@ export class EditorFunctions {
             case 'js':
             case 'jsx':
                 return 'javascript'
+            case 'vue':
+                return 'javascript'
             case 'ts':
             case 'tsx':
                 return 'typescript'

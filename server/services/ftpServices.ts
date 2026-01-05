@@ -2,7 +2,7 @@ import fs from 'fs-extra'
 import path from 'path'
 
 import { Client } from "basic-ftp"
-import { ftpConfig, ftpDirectories } from '../global/interfaces'
+import { Connection, ftpDirectories } from '../global/interfaces'
 
 import { Results } from '../global/interfaces'
 import { Variables } from '../global/variables'
@@ -11,7 +11,7 @@ export class ftpServices {
 
     private static client = new Client()
 
-    public static async RemoteStructure (ftpConfig: ftpConfig) {
+    public static async RemoteStructure (connection: Connection) {
 
         const directories: ftpDirectories = {
             paths: []
@@ -19,13 +19,15 @@ export class ftpServices {
 
         ftpServices.client.ftp.verbose = true
 
+        console.log(connection)
+
         try {
             await ftpServices.client.access({
-                host: ftpConfig.host,
-                user: ftpConfig.user,
-                password: ftpConfig.password,
-                port: ftpConfig.port,
-                secure: true,
+                host: connection.host,
+                user: connection.user,
+                password: connection.password,
+                port: Number(connection.port),
+                secure: false,
                 secureOptions: {
                     rejectUnauthorized: false // should be true when live
                 }
@@ -39,21 +41,24 @@ export class ftpServices {
                 }
             }
 
+            console.log(files)
+
             ftpServices.client.close()
 
             return { success: true, function: this.RemoteStructure.name, data: directories, message: "Remote folder structure retrieved", logMessage: "Remote folder structure retrieved" }
         } catch (err) {
+            console.log(err)
             return { success: false, function: this.RemoteStructure.name, message: "Could not find or access remote server", logMessage: err.message }
         }
     }
 
-    public static async DownloadProject (ftpConfig: ftpConfig, remoteDir: string, projectPath: string) {
+    public static async DownloadProject (connection: Connection, remoteDir: string, projectPath: string) {
         try {
             await ftpServices.client.access({
-                host: ftpConfig.host,
-                user: ftpConfig.user,
-                password: ftpConfig.password,
-                port: ftpConfig.port,
+                host: connection.host,
+                user: connection.user,
+                password: connection.password,
+                port: Number(connection.port),
                 secure: true,
                 secureOptions: {
                     rejectUnauthorized: false // should be true when live
@@ -110,13 +115,13 @@ export class ftpServices {
         return { success: true, result: results }
     }
 
-    public static async PublishProject (ftpConfig: ftpConfig, selectedProject: string, remoteDir: string) {
+    public static async PublishProject (connection: Connection, selectedProject: string, remoteDir: string) {
         try {
             await ftpServices.client.access({
-                host: ftpConfig.host,
-                user: ftpConfig.user,
-                password: ftpConfig.password,
-                port: ftpConfig.port,
+                host: connection.host,
+                user: connection.user,
+                password: connection.password,
+                port: Number(connection.port),
                 secure: true,
                 secureOptions: {
                     rejectUnauthorized: false // should be true when live
