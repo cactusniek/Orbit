@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react'
 import { useAtom } from 'jotai'
 
-import { remoteStructureAtom, remoteStructureResultAtom, remoteStructureMessageAtom } from '../utils/atoms'
+import { remoteStructureAtom, remoteStructureResultAtom, remoteStructureMessageAtom, isSelectingRemotePathAtom, remotePathAtom } from '../utils/atoms'
 
 import type { Connection } from '../utils/interfaces'
 
@@ -12,6 +12,9 @@ export default function RemoteStructure() {
     const [remoteStructureResult, setRemoteStructureResult] = useAtom(remoteStructureResultAtom)
     const [remoteStructureMessage, setRemoteStructureMessage] = useAtom(remoteStructureMessageAtom)
 
+    const [isSelectingRemotePath, setIsSelectingRemotePath] = useAtom(isSelectingRemotePathAtom)
+    const [remotePath, setRemotePath] = useAtom(remotePathAtom)
+
     async function getRemoteStructure(e: any) {
         e.preventDefault()
 
@@ -21,6 +24,8 @@ export default function RemoteStructure() {
         setRemoteStructureResult(remoteStructureObject.result)
         setRemoteStructureMessage(remoteStructureObject.message)
     }
+
+    async function renderTree() {}
 
     return (
         <div id="container-button" className="flex w-[21.25rem] flex-col gap-[1rem] transition-all duration-[900ms]">
@@ -34,7 +39,7 @@ export default function RemoteStructure() {
                 </div>
             </form>
 
-            <div className="container-selectRemoteStructure"></div>
+            <div className="container-tree"></div>
         </div>
     )
 }

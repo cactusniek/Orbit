@@ -7,6 +7,7 @@ import type {
     GetConnectionResponse,
     Connection,
     SaveConnectionResponse,
+    RemoteStructureResponse,
     FolderData,
     EditAPIResponse,
     RenameResponse,
@@ -119,9 +120,22 @@ export class settingsAPI {
         try {
             let response = await APIBase.fetchData('/settings/saveConnection', 'POST', body)
 
-            console.log(response, 'from saveConnection')
+            console.log(response)
 
             return JSON.parse(response)
+        } catch (err) {
+            console.error('API fetch error: ', err)
+            return { result: false, message: 'Something went wrong. If it keeps happening, contact the admin.' }
+        }
+    }
+
+    public static async remoteStructure(): Promise<RemoteStructureResponse> {
+        try {
+            let response = await APIBase.fetchData('/edit/remoteStructure', 'POST')
+
+            response = parse(response)
+
+            return response
         } catch (err) {
             console.error('API fetch error: ', err)
             return { result: false, message: 'Something went wrong. If it keeps happening, contact the admin.' }

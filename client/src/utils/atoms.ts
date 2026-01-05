@@ -35,3 +35,6 @@ export const saveConnectionMessageAtom = atom<string>()
 export const remoteStructureAtom = atom<Node<FolderData>>()
 export const remoteStructureResultAtom = atom<boolean>()
 export const remoteStructureMessageAtom = atom<string>()
+
+export const isSelectingRemotePathAtom = atom<boolean>(false)
+export const remotePathAtom = atom<string | null>(null)
