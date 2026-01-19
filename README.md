@@ -24,9 +24,9 @@ It runs entirely on your own infrastructure and is intended to be deployed via D
 
 ## Showcase
 
-![dashboard](https://github.com/niekelodeon/Orbit/blob/main/assets/dashboard.png "Dashboard page")
-![login](https://github.com/niekelodeon/Orbit/blob/main/assets/login.png "Login page")
-![selecting](https://github.com/niekelodeon/Orbit/blob/main/assets/selecting.png "Selecting folder view")
+![dashboard](https://github.com/cactusniek/Orbit/blob/main/assets/dashboard.png "Dashboard page")
+![login](https://github.com/cactusniek/Orbit/blob/main/assets/login.png "Login page")
+![selecting](https://github.com/cactusniek/Orbit/blob/main/assets/selecting.png "Selecting folder view")
 
 [Figma design](https://www.figma.com/design/Gd2qxspnrKTQLjloc0GOSF/Niek-CMS?node-id=2-1712&t=xS2UVMMV6y8GXald-1)
 
@@ -34,7 +34,7 @@ It runs entirely on your own infrastructure and is intended to be deployed via D
 
 1. **Clone and install**
 ```bash
-git clone <github.com/niekelodeon/orbit> orbit-cms && cd orbit-cms
+git clone <github.com/cactusniek/orbit> orbit-cms && cd orbit-cms
 ```
 
 2. **Create your .env file**
